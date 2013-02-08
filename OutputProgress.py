@@ -20,7 +20,10 @@ class ProgressBar():
 			'mark' : "|"
 		}
 		# Build the information bar
-		self.infoStart = "%s0%% %s" % ( self.segment[ 'mark' ], self.barName )
+		self.infoStart = "%s0%% %s" % ( 
+			self.segment[ 'mark' ], 
+			self.barName,
+		)
 		self.infoEnd = "100%%%s" % ( self.segment[ 'mark' ], )
 		gap = self.barSize - len( self.infoStart + self.infoEnd ) + 2
 		self.info = "%s%s%s" % (
