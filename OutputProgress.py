@@ -34,7 +34,7 @@ class ProgressBar():
 	#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	# Print the information bar
 	def printInfo( self ):
-		# print self.info
+		print self.info
 	#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	# Write out using stdout.write so the buffer overwites itself
 	def progress( self, ratio ):
