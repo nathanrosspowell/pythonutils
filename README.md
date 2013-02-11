@@ -10,4 +10,4 @@ Run the `_testing.py` file to invoke all of the *TestRun() functions.
 For a file named `OutputProgress.py` the test function should be as follows:
 
     def outputProgressTestRun():
-        print "This will be called be _testing.py"
+        print "This will be called by _testing.py"
