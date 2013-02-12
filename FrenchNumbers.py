@@ -33,9 +33,9 @@ tens = (
 	"quarante",
 	"cinqanyte",
 	"sixante",
-	"soixante-dix",
+	( "soixante-dix", "soixante-" )
 	"quatre-vingts",
-	"quatre-vingts-dix",
+	( "quatre-vingts-dix", "quatre-vingts-" ),
 )
 hundred = "cent"
 thousand = "mile"
