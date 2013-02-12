@@ -194,11 +194,15 @@ def quizRandom( quizFunction, maxNumber, total, trys = 3 ):
 # Help.
 def printNumbers( min = 0, max = 20 ):
     print "--------------\nNumbers %d to %d:" % ( min, max, )
-    for i in xrange( max + 1 ): 
+    for i in xrange( min, max + 1 ): 
         print str( i ).rjust( 4 ), "=",  getWord( i )
     print "--------------"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test run.
+def frenchNumbersTestRun():
+    printNumbers( min = 890, max = 910 )
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-    printNumbers()
+    
     quizRandom( quizWord, 10, 3 )
