@@ -2,8 +2,9 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # OutputProgress. Authored by Nathan Ross Powell.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# First 19 numbers by index.
 units = (
-	"zero",
+	"", # zero
 	"un",
 	"deux",
 	"troi",
@@ -25,6 +26,7 @@ units = (
 	"dix-neuf",
 )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# All of the unique tens by digit index.
 tens = (
 	"",
 	"",
@@ -32,49 +34,79 @@ tens = (
 	"trente",
 	"quarante",
 	"cinqanyte",
-	"sixante",
-	( "soixante-dix", "soixante-" )
-	"quatre-vingts",
-	( "quatre-vingts-dix", "quatre-vingts-" ),
+	"soixante",
+	( "soixante", True ),
+	"quatre vingts",
+	( "quatre vingts", True ),
 )
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Further measures.
 hundred = "cent"
 thousand = "mile"
-million = "million"
+#million = "million"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Digit to word.
+# Index names.
+ThousandsIndex = 0
+HundredsIndex = 1
+TensIndex = 2
+UnitsIndex = 3
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Digit to word. Work for up to four digit numbers
 def getWord( number):
-	strnum = str( number )[ :: -1 ]
+	# Special case for '0'.
+	if int( number ) is 0:
+		return "zero"
+	# Get a four digit string.
+	strnum = str( number ).zfill( 4 )
+	# The string to build.
 	word = ""
-	usedAnd = False
-	for i in range( len( strnum ) - 1, -1, -1 ):
-		n = int( strnum[ i ] )
-		if n == 0:
-			continue
-		if i == 3:
-			word += " %s %s" % ( units[ n ], thousand )
-		elif i == 2:
-			word += " %s %s" % ( units[ n ], hundred )
-		elif i == 1:
-			if len( word ) > 0 and not usedAnd: 
-				word += " et"
-				usedAnd = True 
-			if n > 1:
-				word += " %s" % ( tens[ n ], )
-			else:
-
-				n2 = int( strnum[ :2 ][ :: -1 ] )
-				print "n2", n2
-				word += " %s" % ( units[ n2 ], )
-				break
+	# Get the digits for each coloumn.
+	digitThousands = int( strnum[ ThousandsIndex ] )
+	digitHundreds = int( strnum[ HundredsIndex ] )
+	digitTens = int( strnum[ TensIndex ] )
+	digitUnits = int( strnum[ UnitsIndex ] )
+	# Variables to track the quirks of the number system.
+	funnyPlusTenRule = False
+	andOne = False
+	# Handle thousands.
+	if digitThousands > 0:
+		wordThousands = "%s %s " % ( units[ digitThousands ], thousand, )
+		word += wordThousands
+	# Handle hundreds.
+	if digitHundreds > 0:
+		wordHundreds = "%s %s " % ( units[ digitHundreds ], hundred, )
+		word += wordHundreds
+	# Handle tens that are outside of the 'teens' range.
+	if digitTens > 1:
+		funnyPlusTenRule = len( tens[ digitTens ] ) is 2
+		if digitUnits is 0 and funnyPlusTenRule:
+				wordTens = tens[ digitTens ][ 0 ]
 		else:
-			if len( strnum ) > 2 and not usedAnd: 
-				word += " and"
-				usedAnd = True 
-			word += " %s" % ( units[ n ], )
-	return word
+			andOne = digitTens < 7
+			if funnyPlusTenRule:
+				wordTens = tens[ digitTens ][ 0 ]
+			else:
+				wordTens = tens[ digitTens ]
+		word += "%s " % ( wordTens, )
+	# Special case for numbers under 20 and those which are using the +10 rule, eg. 70 = 60 + 10
+	if digitTens is 1 or ( digitTens is not 0 and funnyPlusTenRule ):
+		digitTeen = int( "1%d" % ( digitUnits, ) ) 
+		teenWord = ""
+		if digitUnits is 1 and andOne:
+			teenWord = "et "
+		teenWord += "%s " % ( units[ digitTeen ], )
+		word += teenWord
+	else:
+		# Normal less than 10 digit.
+		unitWord = ""
+		if digitUnits is 1 and andOne:
+			unitWord = "et "
+		unitWord += "%s " % ( units[ digitUnits ], )
+		word += unitWord
+	# Return the word without any extra whitespaces.
+	return word.strip()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-	for i in xrange( 1, 1001 ): 
-		print getWord( i )
-
+	for i in xrange( 101 ): 
+		print str( i ).rjust( 4 ), "=",  getWord( i )
