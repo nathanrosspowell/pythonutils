@@ -10,7 +10,7 @@ units = (
     "", # zero
     "un",
     "deux",
-    "troi",
+    "trois",
     "quatre",
     "cinq",
     "six",
@@ -36,7 +36,7 @@ tens = (
     "vingt",
     "trente",
     "quarante",
-    "cinqanyte",
+    "cinquante",
     "soixante",
     ( "soixante", True ),
     "quatre vingts",
@@ -204,5 +204,4 @@ def frenchNumbersTestRun():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-    
-    quizRandom( quizWord, 10, 3 )
+    quizRandom( quizNumber, 100, 3 )
