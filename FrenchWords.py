@@ -35,7 +35,7 @@ verbs = {
         "we" : "nous allons", 
         "you(p)" : "vous allez",
         "they(m)" : "ils vont",
-        "they(f)" : "elles vont",
+        "they(f)" : "elle vont",
     },
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -64,7 +64,6 @@ def randomKey( wordDict ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
 def basicVerbs( tests = 3, trys = 3 ):
-    answer = False
     totalAttempts = 0
     keys = []
     # Get a random selection of the keys.
@@ -74,6 +73,7 @@ def basicVerbs( tests = 3, trys = 3 ):
     shuffle( keys )
     keys = [ x for i, x in enumerate( keys ) if i < tests ]
     for key in keys:
+        answer = False
         theseTrys = trys
         actionKey = randomKey( verbs[ key ] )
         french, english = getSentence( actionKey, key, "" )
