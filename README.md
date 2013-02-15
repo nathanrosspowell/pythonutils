@@ -3,6 +3,12 @@ PythonUtils
 
 A bunch of scripts that may or may not be useful ever again
 
+### Version
+
+All of the Python is currently working with 
+
+    Python 2.7
+
 ### Testing
 
 Run the `_testing.py` file to invoke all of the *TestRun() functions.
