@@ -37,21 +37,35 @@ verbs = {
         "they(m)" : "ils vont",
         "they(f)" : "elle vont",
     },
+    "like" : "aimer",
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
-rVerbs = {
-    "like" : "",
+verbRole = {
+    "i" : ( "Je", "e", ),
+    "you" : ( "tu", "es", ),
+    "he" : ( "il", "e", ),
+    "she" : ( "elle", "e", ),
+    "we" : ( "nous", "ons", ), 
+    "you(p)" : ( "vous", "ez", ),
+    "they(m)" : ( "ils", "est", ),
+    "they(f)" : ( "elles", "est", ),
 }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
-def getRegularVerb( role, verb ):
-    pass
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
 items = {
     "table" : ( "table", "une" ),
 }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 
+def getIrregularVerb( role, verb, thing ):
+    return "%s %s" % ( verbs[ verb.lower() ][ role.lower() ], thing )
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 
+def getRegularVerb( role, verb, thing ):
+    baseWord = verbs[ verb ][ : -2 ]
+    start, ending = verbRole[ role ]
+    return "%s %s%s %s" % ( start, baseWord, ending, thing, )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Simpler input.
 def input( output ):
@@ -60,14 +74,17 @@ def input( output ):
 # 
 def getSentence( role, verb, thing ):
     # Add checks.
-    french = "%s %s" % ( verbs[ verb.lower() ][ role.lower() ], thing )
+    try:
+        french = getIrregularVerb( role, verb, thing )
+    except:
+        french = getRegularVerb( role, verb, thing )
     english = "%s %s %s" % ( role.lower(), verb.lower(), thing )
     return french.lower().strip(), english.lower().strip()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
-def randomKey( wordDict ):
-    index = randrange( len( wordDict ) )
-    for i, key in enumerate( wordDict ):
+def randomKey():
+    index = randrange( len( verbRole ) )
+    for i, key in enumerate( verbRole ):
         if i == index:
             return key
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -84,7 +101,7 @@ def basicVerbs( tests = 3, trys = 3 ):
     for key in keys:
         answer = False
         theseTrys = trys
-        actionKey = randomKey( verbs[ key ] )
+        actionKey = randomKey()
         french, english = getSentence( actionKey, key, "" )
         print "What is the french for '%s'?" % ( english, )
         while theseTrys > 0 and answer is False:
