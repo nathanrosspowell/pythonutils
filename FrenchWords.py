@@ -5,7 +5,7 @@
 # Imports.
 from random import shuffle, randrange
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Some Verbs.
+# Verbs, irregular ones have the variations in a dict. 
 verbs = {
     "have" : {
         "i" : "j'ai",
@@ -38,9 +38,27 @@ verbs = {
         "they(f)" : "elle vont",
     },
     "like" : "aimer",
+    "work" : "travailler",
+    "eat" : "manager",
+    "draw" : "dessiner",
+    "bring" : "apporter",
+    "sing" : "chanter",
+    "compose" : "composer",
+    "create" : "creer",
+    "scream" : "crier",
+    "give" : "donner",
+    "study" : "etudier",
+    "freeze" : "geler",
+    "scratch" : "frotter",
+    "play" : "jouer",
+    "pardon" : "pardonner",
+    "speak" : "parler",
+    "share" : "partager",
+    "jump" : "sauter",
+    "carry" : "transporter",
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Regular verb roles. 
 verbRole = {
     "i" : ( "Je", "e", ),
     "you" : ( "tu", "es", ),
@@ -52,16 +70,16 @@ verbRole = {
     "they(f)" : ( "elles", "est", ),
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Some French words with gender. 
 items = {
     "table" : ( "table", "une" ),
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Build a irregular sentence. 
 def getIrregularVerb( role, verb, thing ):
     return "%s %s" % ( verbs[ verb.lower() ][ role.lower() ], thing )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Build a regular sentence.
 def getRegularVerb( role, verb, thing ):
     baseWord = verbs[ verb ][ : -2 ]
     start, ending = verbRole[ role ]
@@ -71,7 +89,7 @@ def getRegularVerb( role, verb, thing ):
 def input( output ):
     return raw_input( output ).strip()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Build a sentence. 
 def getSentence( role, verb, thing ):
     # Add checks.
     try:
@@ -81,7 +99,7 @@ def getSentence( role, verb, thing ):
     english = "%s %s %s" % ( role.lower(), verb.lower(), thing )
     return french.lower().strip(), english.lower().strip()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Helper to pick a random key. 
 def randomKey():
     index = randrange( len( verbRole ) )
     for i, key in enumerate( verbRole ):
@@ -89,7 +107,7 @@ def randomKey():
             return key
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
-def basicVerbs( tests = 3, trys = 3 ):
+def testVerbs( tests = 3, trys = 3 ):
     totalAttempts = 0
     keys = []
     # Get a random selection of the keys.
@@ -123,4 +141,4 @@ def frenchWordsTestRun():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-    basicVerbs( 5 )
+    testVerbs( 5 )
