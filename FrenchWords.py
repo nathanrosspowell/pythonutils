@@ -106,17 +106,18 @@ def randomKey():
         if i == index:
             return key
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 
+# Pick a bunch even distibution of verbs then. 
 def testVerbs( tests = 3, trys = 3 ):
     totalAttempts = 0
-    keys = []
-    # Get a random selection of the keys.
-    for key in verbs:
-        for i in range( tests ):
-            keys.append( key )
-    shuffle( keys )
-    keys = [ x for i, x in enumerate( keys ) if i < tests ]
-    for key in keys:
+    # Make a list of all of the keys.
+    keys = verbs.keys() 
+    # Append the list until we have more items that the number of test.
+    keysList = keys
+    while len( keysList ) < tests:
+        keysList += keys
+    shuffle( keysList )
+    randomKeys = [ x for i, x in enumerate( keysList ) if i < tests ]
+    for key in randomKeys:
         answer = False
         theseTrys = trys
         actionKey = randomKey()
