@@ -37,6 +37,7 @@ verbs = {
         "they(m)" : "ils vont",
         "they(f)" : "elle vont",
     },
+    # Group 1
     "like" : "aimer",
     "work" : "travailler",
     "eat" : "manager",
@@ -56,10 +57,12 @@ verbs = {
     "share" : "partager",
     "jump" : "sauter",
     "carry" : "transporter",
+	# Group 2
+    "hate" : "hair",
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Regular verb roles. 
-verbRole = {
+verb1Role = {
     "i" : ( "Je", "e", ),
     "you" : ( "tu", "es", ),
     "he" : ( "il", "e", ),
@@ -68,6 +71,17 @@ verbRole = {
     "you(p)" : ( "vous", "ez", ),
     "they(m)" : ( "ils", "est", ),
     "they(f)" : ( "elles", "est", ),
+}
+# Regular verb roles. 
+verb2Role = {
+    "i" : ( "Je", "is", ),
+    "you" : ( "tu", "is", ),
+    "he" : ( "il", "it", ),
+    "she" : ( "elle", "it", ),
+    "we" : ( "nous", "essons", ), 
+    "you(p)" : ( "vous", "essez", ),
+    "they(m)" : ( "ils", "essent", ),
+    "they(f)" : ( "elles", "essent", ),
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Some French words with gender. 
@@ -81,7 +95,15 @@ def getIrregularVerb( role, verb, thing ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Build a regular sentence.
 def getRegularVerb( role, verb, thing ):
-    baseWord = verbs[ verb ][ : -2 ]
+    verb = verbs[ verb ]
+    baseWord = verb[ : -2 ]
+    ending = verb[ -2 : ]
+    if ending == "er":
+        verbRole = verb1Role
+    elif ending == "ir":
+        verbRole = verb2Role
+    else:
+        raise Exception( "Bad verb '%s'. No case for it." % ( verb, ) )
     start, ending = verbRole[ role ]
     return "%s %s%s %s" % ( start, baseWord, ending, thing, )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,8 +123,8 @@ def getSentence( role, verb, thing ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Helper to pick a random key. 
 def randomKey():
-    index = randrange( len( verbRole ) )
-    for i, key in enumerate( verbRole ):
+    index = randrange( len( verb1Role ) )
+    for i, key in enumerate( verb1Role ):
         if i == index:
             return key
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,4 +164,4 @@ def frenchWordsTestRun():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-    testVerbs( 5 )
+    print getRegularVerb( "she", "hate", "you" )
