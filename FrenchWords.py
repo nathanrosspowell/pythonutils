@@ -160,7 +160,7 @@ def testVerbs( tests = 3, trys = 3 ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def frenchWordsTestRun():
-    printSentence( "she", "be", "blah" )
+    getSentence( "she", "be", "blah" )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":

@@ -26,7 +26,7 @@ def loopColours():
             setColor( a, b )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
-def cmdColoursTestRun():
+def cmdColorsTestRun():
     print "Starting operation."
     loopColours()
     # Reset
