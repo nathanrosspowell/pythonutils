@@ -163,7 +163,7 @@ if __name__ == "__main__":
     # List of all directories to check inside of (recursively).
     directories = (
         #"my_root",
-        "F:\perforce\ubisoft\driver\main",
+        "F:\mytest\folder\somewhere",
     )
     # list of all the file types we will check.
     etx_list = ( 
