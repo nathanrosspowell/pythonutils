@@ -157,13 +157,11 @@ def execute( match, directories, etx_list, do_printing=False ):
 if __name__ == "__main__":
     # List of tuples of opening and closing tags.
     match = (
-        #( "open", "close" ),
-        ( "NOMAD_BEGIN_NEW_EVENT_MAP", "NOMAD_END_NEW_EVENT_MAP" ),
+        ( "open", "close" ),
     )
     # List of all directories to check inside of (recursively).
     directories = (
-        #"my_root",
-        "F:\mytest\folder\somewhere",
+        "my_root",
     )
     # list of all the file types we will check.
     etx_list = ( 
