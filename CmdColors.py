@@ -15,11 +15,11 @@ def hex2dec( s ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def setColor( a, b ):
     string = "COLOR %s%s" % ( str( a ), str( b ), )
-    print string
+    print(string)
     os.system( string )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def loopColours():
-    for i in xrange( 16 ):
+    for i in range( 16 ):
         for j in range(16):
             a = dec2hex( i )
             b = dec2hex( j )
@@ -27,11 +27,11 @@ def loopColours():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def cmdColorsTestRun():
-    print "Starting operation."
+    print("Starting operation.")
     loopColours()
     # Reset
     setColor( 0, 7 )
-    print "\nOperation done!"
+    print("\nOperation done!")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Direct run of the file, invoke test.
 if __name__ == "__main__":

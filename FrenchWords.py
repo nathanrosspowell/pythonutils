@@ -144,19 +144,19 @@ def testVerbs( tests = 3, trys = 3 ):
         theseTrys = trys
         actionKey = randomKey()
         french, english = getSentence( actionKey, key, "" )
-        print "What is the french for '%s'?" % ( english, )
+        print("What is the french for '%s'?" % ( english, ))
         while theseTrys > 0 and answer is False:
             totalAttempts += 1
             answerWord = input( "Answer> " )
             if answerWord == french:
                 answer = True
-                print "Well done!"
+                print("Well done!")
             else:
                 theseTrys -= 1
-                print "Incorrect."
+                print("Incorrect.")
                 if theseTrys > 0:
-                    print "Please try again."
-        print "The French for '%s' is '%s'." % ( english, french, )
+                    print("Please try again.")
+        print("The French for '%s' is '%s'." % ( english, french, ))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def frenchWordsTestRun():
@@ -164,4 +164,4 @@ def frenchWordsTestRun():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main test.
 if __name__ == "__main__":
-    print getRegularVerb( "she", "hate", "you" )
+    print(getRegularVerb( "she", "hate", "you" ))

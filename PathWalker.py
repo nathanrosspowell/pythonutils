@@ -16,10 +16,10 @@ class PathWalker():
     # Write out all the structure
     def printAll( self ):
         for path, dirs, files in walk( self.root ):
-            print path
-            print dirs
-            print files
-            print "----"
+            print(path)
+            print(dirs)
+            print(files)
+            print("----")
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # All files with full paths.
     def yieldFolders( self, reject = None ):
@@ -60,10 +60,10 @@ class PathWalker():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def pathWalkerTestRun():
-    print "Starting walker."
+    print("Starting walker.")
     walker = PathWalker( "D:\\junk" )
-    print walker.getDict()
-    print "\nOperation done!"
+    print(walker.getDict())
+    print("nOperation done!")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Direct run of the file, invoke test.

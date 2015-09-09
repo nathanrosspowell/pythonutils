@@ -30,12 +30,12 @@ class Tester( PathWalker ):
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Run the scriptTestRun() function in each file.
     def runScript( self, script ):
-        print self.seperator
-        print "Running", script
+        print(self.seperator)
+        print("Running", script)
         s = script
         command = "%s.%sTestRun()" % ( s, s[ 0 ].lower() + s[ 1: ], )
         exec( "import %s;%s" % ( script, command, ) )
-        print "%s\n" %( self.seperator, )
+        print("%s\n" %( self.seperator, ))
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Test all the scripts.
     def runAllScripts( self ):
@@ -44,10 +44,10 @@ class Tester( PathWalker ):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def doTestRun():
-    print "Starting Tests."
+    print("Starting Tests.")
     walker = Tester( split( realpath( __file__ ) )[ 0 ] )
     walker.runAllScripts()
-    print "Tests done!"
+    print("Tests done!")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Direct run of the file, invoke test.
 if __name__ == "__main__":

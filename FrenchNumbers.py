@@ -110,34 +110,31 @@ def getWord( number):
     # Return the word without any extra whitespaces.
     return word.strip()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Simpler input.
-def input( output ):
-    return raw_input( output ).strip()
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Quiz a range.
 def quizRange( quizFunction, numberRange, trys = 3, shuffleThem = True ):
+    numberRange = list(numberRange)
     if shuffleThem:
         shuffle( numberRange )
     items = len( numberRange )
-    print "%s items in test:" % ( items, )
+    print("%s items in test:" % ( items, ))
     correct = 0
     totalAttempts = 0
     firstQ = True
     for i, number in enumerate( numberRange ):
         if not firstQ:
-            print "--------------"
+            print("--------------")
         firstQ = False;
-        print "%s) " % ( i + 1, ),
+        print("%s) " % ( i + 1, ),)
         answer, attempts = quizFunction( number, trys )
         totalAttempts += attempts
         if answer:
             correct += 1
-    print "Score: %d/%d, total attempts: %d" % ( correct, items, totalAttempts, )
+    print("Score: %d/%d, total attempts: %d" % ( correct, items, totalAttempts, ))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Quiz a number.
 def quizNumber( number, trys = 3 ):
     word = getWord( number )
-    print "What number is '%s'" % ( word, )
+    print("What number is '%s'" % ( word, ))
     answer = False
     totalAttempts = 0
     while trys > 0 and answer is False:
@@ -147,15 +144,15 @@ def quizNumber( number, trys = 3 ):
             answerNumber = int( answerWord )
             if answerNumber == number:
                 answer = True
-                print "Well done!"
+                print("Well done!")
             else:
                 trys -= 1
-                print "Incorrect."
+                print("Incorrect.")
                 if trys > 0:
-                    print "Please try again."
+                    print("Please try again.")
         except:
-            print "Please entre a number."
-    print "'%s' is the number %d" % ( word, number, )
+            print("Please entre a number.")
+    print("'%s' is the number %d" % ( word, number, ))
     return answer, totalAttempts
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Quiz a word.
@@ -163,7 +160,7 @@ def quizWord( number, trys = 3 ):
     def cleanWord( theWord ):
         return theWord.replace( '-', ' ' ).strip()
     word = getWord( number )
-    print "What is the word for '%d'" % ( number, )
+    print("What is the word for '%d'" % ( number, ))
     answer = False
     totalAttempts = 0
     while trys > 0 and answer is False:
@@ -171,13 +168,13 @@ def quizWord( number, trys = 3 ):
         answerWord = cleanWord( input( "Answer> " ) )
         if answerWord == cleanWord( word ):
             answer = True
-            print "Well done!"
+            print("Well done!")
         else:
             trys -= 1
-            print "Incorrect."
+            print("Incorrect.")
             if trys > 0:
-                print "Please try again."
-    print "'%s' is the number %d" % ( word, number, )
+                print("Please try again.")
+    print("'%s' is the number %d" % ( word, number, ))
     return answer, totalAttempts
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # A bunch of number quiz functions
@@ -186,17 +183,17 @@ def quizLowNumbers( quizFunction, trys = 3 ):
 def quizTensNumbers( quizFunction, trys = 3 ):
     quizRange( quizFunction,range( 20 ), trys )
 def quizRandom( quizFunction, maxNumber, total, trys = 3 ):
-    nums = range( maxNumber + 1 )
+    nums = list(range( maxNumber + 1 ))
     shuffle( nums )
     nums = [ x for i, x in enumerate( nums ) if i < total ]
     quizRange( quizFunction, nums, trys, shuffleThem = False )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Help.
 def printNumbers( min = 0, max = 20 ):
-    print "--------------\nNumbers %d to %d:" % ( min, max, )
-    for i in xrange( min, max + 1 ): 
-        print str( i ).rjust( 4 ), "=",  getWord( i )
-    print "--------------"
+    print("--------------\nNumbers %d to %d:" % ( min, max, ))
+    for i in range( min, max + 1 ): 
+        print(str( i ).rjust( 4 ), "=",  getWord( i ))
+    print("--------------")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def frenchNumbersTestRun():

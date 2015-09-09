@@ -26,13 +26,10 @@ def loopColours():
             setColor( a, b )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
-def cmdColorsTestRun():
+def cardDeckTestRun():
     print( "Starting operation.")
-    loopColours()
-    # Reset
-    setColor( 0, 7 )
     print("\nOperation done!")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Direct run of the file, invoke test.
 if __name__ == "__main__":
-    cmdColorsTestRun()
+    cardDesckTestRun()

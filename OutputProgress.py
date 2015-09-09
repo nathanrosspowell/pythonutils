@@ -34,7 +34,7 @@ class ProgressBar():
 	#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	# Print the information bar
 	def printInfo( self ):
-		print self.info
+		print(self.info)
 	#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	# Write out using stdout.write so the buffer overwites itself
 	def progress( self, ratio ):
@@ -75,7 +75,7 @@ class ProgressBar():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test run.
 def outputProgressTestRun():
-	print "Starting operation."
+	print("Starting operation.")
 	bar = ProgressBar( "Copy stuff", 70 )
 	bar.printInfo()
 	percentage = 0.0
@@ -84,7 +84,7 @@ def outputProgressTestRun():
 		bar.progress( percentage )
 		sleep( 0.01 )
 		
-	print "\nOperation done!"
+	print("\nOperation done!")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Direct run of the file, invoke test.
