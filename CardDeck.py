@@ -3,23 +3,21 @@
 # CardDeck. Authored by Nathan Ross Powell.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Imports.
-from itertools import chain, repeat
 from random import shuffle
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Globals
-suits = "CDHS"
-royal = "JQKA" # score built into the order.
+suits = tuple("CDHS")
+royal = tuple("JQKA") # score built into the order.
+numbers = tuple(range(2,11))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Make a deck.
 def deck():
-    nums = list(chain(range(2,11), royal));
-    fn = lambda i, x: str(x) + suits[i]
-    return list( fn(i, x) for i, n in enumerate(repeat(nums, 4)) for x in n )
+    return list( ( c, s ) for c in numbers + royal for s in suits )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Score a card.
 def score(card: str, aces_high: bool = True) -> int:
     try:
-        return int(card[:-1])
+        return int(card[0])
     except ValueError:
         pass
     score = royal.index(card[:-1])
