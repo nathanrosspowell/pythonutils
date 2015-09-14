@@ -17,7 +17,7 @@ def deck():
     return list( fn(i, x) for i, n in enumerate(repeat(nums, 4)) for x in n )
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Score a card.
-def score(card, aces_high = True):
+def score(card: str, aces_high: bool = True) -> int:
     try:
         return int(card[:-1])
     except ValueError:
@@ -27,15 +27,15 @@ def score(card, aces_high = True):
         return 1
     return score + 10
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def deal(cards, number = 1):
+def deal(cards, number: int = 1):
     return cards[number:], cards[:number]
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Deal out cards to the table.
 def deal_hands(
-        players = 1, 
-        player_cards = 2, 
-        dealer = True, 
-        dealer_cards_at_end = False,
+        players: int = 1,
+        player_cards: int = 2, 
+        dealer: bool = True, 
+        dealer_cards_at_end: bool = False,
         cards = None):
     if cards is None:
         cards = deck()
@@ -80,14 +80,13 @@ def cardDeckTestRun():
     print("Score AS low", score("AS", aces_high=False))
     print("~~~")
     print("BlackJack")
-    cards = deck()
-    _, dealer, players = deal_hands(players = 3)
+    cards, dealer, players = deal_hands(players = 3)
     for i, player in enumerate(players):
         print("   Player", i+1, ":", player)
     print("   Dealer:", dealer)
     print("~~~")
     print("Texas hold em")
-    _, dealer, players = deal_hands(players = 3, dealer_cards_at_end = 3)
+    cards, dealer, players = deal_hands(players = 3, dealer_cards_at_end = 3)
     for i, player in enumerate(players):
         print("   Player", i+1, ":", player)
     print("   Dealer:", dealer)

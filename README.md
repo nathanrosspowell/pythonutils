@@ -7,7 +7,7 @@ A bunch of scripts that may or may not be useful ever again
 
 All of the Python is currently working with 
 
-    Python 2.7
+    Python 3.5
 
 ### Testing
 
