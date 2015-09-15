@@ -60,8 +60,8 @@ def RandomGrid():
 def RandomGoals( grid ):
     width = len( grid )
     def SetGoalTile( goalTile, tileIndex ):
-        row = tileIndex % width
-        col = tileIndex / width
+        row = int( tileIndex % width)
+        col = int(tileIndex / width)
         grid[ row ][ col ] = goalTile
         return ( row, col )
     tiles = [ i for i in range( width ** 2 ) ]
@@ -73,8 +73,8 @@ def RandomPlayerPosition( grid ):
     width = len( grid )
     def TileIsFree( tileIndex ):
         tile = None
-        row = tileIndex % width
-        col = tileIndex / width
+        row = int( tileIndex % width)
+        col = int(tileIndex / width)
         if grid[ row ][ col ] == EmptyTile:
             tile = ( row, col )
         return tile
@@ -93,7 +93,7 @@ def SetGridLocation( grid, location, tile ):
         grid[ location[ 0 ] ][ location[ 1 ] ] = tile
         return oldTile
     except:
-        print "ERROR:SetGridLocation"
+        print("ERROR:SetGridLocation")
     return EdgeTile
 def ValidGridLocation( grid, locationXY, testTiles = None ):
     valid = False
@@ -135,7 +135,7 @@ def VerifyPath( grid, startXY, goalXY ):
 # Player input.
 def PlayerInput( text ):
     try:
-        return raw_input( text ).strip()
+        return input( text ).strip()
     except (KeyboardInterrupt, SystemExit):
         return Quit
     except:
@@ -157,10 +157,9 @@ def GetDirection( input ):
 def PlayerMoveMentLoop( grid ):
     goalPos = RandomGoals( grid )
     playerPos = RandomPlayerPosition( grid )
-    print "You start at", playerPos
-    print "Verified path :", str( VerifyPath( grid, playerPos, goalPos ) )
-    print "Character tile = %s" % ( PlayerTile, )
-    print "Maze exit tile = %s" % ( EndTile, )
+    print("Verified path :", str( VerifyPath( grid, playerPos, goalPos ) ))
+    print("Character tile = %s" % ( PlayerTile, ))
+    print("Maze exit tile = %s" % ( EndTile, ))
     PrintGrid( grid )
     while True:
         text, direction = GetDirection( PlayerInput( "Direction >" ) )
@@ -171,14 +170,14 @@ def PlayerMoveMentLoop( grid ):
                     playerPos = newPosition
                     PrintGrid( grid )
                     if end:
-                        print "Well played, sir."
+                        print("Well played, sir.")
                         break
                 else:
-                    print "Can't let you do that"
+                    print("Can't let you do that")
             else:
-                print Usage
+                print(Usage)
         else:
-            print "Quitter"
+            print("Quitter")
             break
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Print utils.
@@ -190,7 +189,7 @@ def PrintGrid( grid ):
     space = " " * Spacing
     newGrid = RotateGrid( grid ) 
     def PrintLine():
-        print ( EdgeTile + space ) * ( len( newGrid ) + 2 )
+        print(( EdgeTile + space ) * ( len( newGrid ) + 2 ))
     lineNum = 0
     PrintLine()
     for line in newGrid:
@@ -198,7 +197,7 @@ def PrintGrid( grid ):
         for tile in line:
             toPrint += space + tile
         toPrint += space + EdgeTile
-        print toPrint
+        print(toPrint)
         lineNum += 1
     PrintLine()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
